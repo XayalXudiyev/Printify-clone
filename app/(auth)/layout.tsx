@@ -15,18 +15,18 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
         </Link>
       </div>
       <div className=" w-full md:w-1/2 flex flex-col space-y-8 items-center justify-center h-screen">
-      <Link href="/">
-            <Image
-              alt="Logo"
-              src="/logo.png"
-              width={512}
-              height={120}
-              className=" h-10 w-auto"
-            />
-            <div className="text-center">
-<h2 className=" font-semibold text-2xl">Welcome back</h2>
-            </div>
-          </Link>
+        <Link href="/">
+          <Image
+            alt="Logo"
+            src="/logo.png"
+            width={512}
+            height={120}
+            className=" h-10 w-auto"
+          />
+          <div className="text-center">
+            <h2 className=" font-semibold text-2xl">Welcome back</h2>
+          </div>
+        </Link>
         {children}
 
       </div>
