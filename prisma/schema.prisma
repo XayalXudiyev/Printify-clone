@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum PhoneModel {
+  iphonex
+  iphone11
+  iphone12
+  iphone13
+  iphone14
+  iphone15
+}
+
+enum CaseMaterial {
+  silicone
+  polycarbonate
+}
+
+enum CaseFinish {
+  smooth
+  textured
+}
+
+enum CaseColor {
+  black 
+  blue
+  rose
+}
+
+enum TshirtSize {
+  small
+  medium
+  large
+  xlarge
+}
+
+enum TshirtColor {
+  white
+  black
+  red
+  green
+  blue
+}
+
+enum MugColor {
+  white
+  black
+  red
+  green
+  blue
+}
+
+enum ProductType {
+  phoneCase
+  tshirt
+  mug
+}
+
+model Configuration {
+  id              String       @id @default(auto()) @map("_id") @db.ObjectId
+  type            ProductType?
+
+  imageUrl        String
+  caseColor       CaseColor?
+  caseModel       PhoneModel?
+  caseMaterial    CaseMaterial?
+  caseFinish      CaseFinish?
+  tshirtSize      TshirtSize?
+  tshirtColor     TshirtColor? 
+  mugColor        MugColor?
+  croppedImageUrl String?
+
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+}
+
+
+// pnpm install prisma
+// pnpx prisma init --datasource-provider sqlite
+// pnpx prisma generate
+// pnpx prisma db push 
+// pnpx prisma studio 
