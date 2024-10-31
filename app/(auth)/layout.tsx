@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import { IoMdClose } from "react-icons/io";
+import Image from "next/image"
+import Link from "next/link"
+import { IoMdClose } from "react-icons/io"
 
 interface AuthLayoutProps {
   children: React.ReactNode
@@ -28,10 +28,15 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
           </div>
         </Link>
         {children}
-
       </div>
       <div className="hidden md:flex w-1/2 h-screen">
-        <Image alt="" src="/auth.jpg" width={1080} height={1920} className="object-cover w-full h-full" />
+        <Image
+          alt=""
+          src="/auth.jpg"
+          width={1080}
+          height={1920}
+          className="object-cover w-full h-full"
+        />
       </div>
     </div>
   )

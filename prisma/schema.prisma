@@ -65,6 +65,8 @@ model Configuration {
   id              String       @id @default(auto()) @map("_id") @db.ObjectId
   type            ProductType?
 
+  width           Int
+  height          Int
   imageUrl        String
   caseColor       CaseColor?
   caseModel       PhoneModel?
@@ -83,5 +85,6 @@ model Configuration {
 // pnpm install prisma
 // pnpx prisma init --datasource-provider sqlite
 // pnpx prisma generate
+// node_modules/prisma sil yüklə xəta verərsə
 // pnpx prisma db push 
-// pnpx prisma studio 
+// pnpx prisma studio  

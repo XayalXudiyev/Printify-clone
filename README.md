@@ -48,3 +48,7 @@ Prisma -> prisma [schema.prisma] lib/prismadb.ts
 Mongo Db 
 
 UploadThing -> app/api lib/uploadthings
+
+Sharp -> api/uploadthing/core
+
+Dropzone -> cataalog/page.tsx
