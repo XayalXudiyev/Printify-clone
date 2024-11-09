@@ -1,7 +1,6 @@
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -9,7 +8,6 @@ import {
 import { routes } from "@/constans"
 import Image from "next/image"
 import Link from "next/link"
-import React from "react"
 import { RiMenuFill } from "react-icons/ri"
 
 const MobileMenu = () => {

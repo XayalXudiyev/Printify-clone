@@ -6,7 +6,7 @@ import {
   generateUploader,
 } from "@uploadthing/react"
 
-export const UploadButton = generateUploadButton<OurFileRoutereRouter>()
+export const UploadButton = generateUploadButton<OurFileRouter>()
 export const UploadDropzone = generateUploadDropzone<OurFileRouter>()
 export const { useUploadThing, uploadFiles } =
   generateReactHelpers<OurFileRouter>()

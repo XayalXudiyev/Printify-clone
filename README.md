@@ -36,7 +36,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 
-Clerk  -> app/(auth)
+Clerk  -> app/(auth) (ClerkProvider)
 
 Prisma -> prisma [schema.prisma] lib/prismadb.ts
           // pnpm install prisma
@@ -47,8 +47,10 @@ Prisma -> prisma [schema.prisma] lib/prismadb.ts
 
 Mongo Db 
 
-UploadThing -> app/api lib/uploadthings
+UploadThing => app/api lib/uploadthings
 
-Sharp -> api/uploadthing/core
+Sharp => api/uploadthing/core
 
-Dropzone -> cataalog/page.tsx
+Dropzone => catalog/page.tsx
+
+RDN => _components/Product/PhoneDesignConfig

@@ -1,9 +1,6 @@
-import { Button } from "@/components/ui/button"
 import { routes } from "@/constans"
 import Image from "next/image"
 import Link from "next/link"
-import React from "react"
-import { IoMenuSharp } from "react-icons/io5"
 import MobileMenu from "./MobileMenu"
 import UserMenu from "./UserMenu"
 
