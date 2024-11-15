@@ -11,13 +11,33 @@ export const PHONE_PRICES = {
 
 export const PHONE_BASE_PRICE = 12_00
 
-type Color = { label: string; value: string; tw: string }
+type Color = { label: string; value: string; tw: string; twBorder: string }
 
 export const PHONE_COLORS: Color[] = [
-  { label: "Black", value: "black", tw: "zinc-900" },
-  { label: "Blue", value: "blue", tw: "blue-950" },
-  { label: "Rose", value: "rose", tw: "rose-950" },
-  { label: "Yellow", value: "yellow", tw: "yellow-900" },
+  {
+    label: "Black",
+    value: "black",
+    tw: "bg-zinc-900",
+    twBorder: "border-zinc-900",
+  },
+  {
+    label: "Blue",
+    value: "blue",
+    tw: "bg-blue-500",
+    twBorder: "border-blue-500",
+  },
+  {
+    label: "Rose",
+    value: "rose",
+    tw: "bg-rose-400",
+    twBorder: "border-rose-400",
+  },
+  {
+    label: "Yellow",
+    value: "yellow",
+    tw: "bg-yellow-300",
+    twBorder: "border-yellow-300",
+  },
 ]
 
 type Model = { label: string; value: string }
@@ -39,7 +59,7 @@ type Option = {
 }
 type Group = { label: string; options: Option[] }
 
-export const MATERIALS: Group[] = [
+export const PHONE_MATERIALS: Group[] = [
   {
     label: "material",
     options: [
@@ -59,7 +79,7 @@ export const MATERIALS: Group[] = [
   },
 ] as const
 
-export const FINISHES: Group[] = [
+export const PHONE_FINISHES: Group[] = [
   {
     label: "finish",
     options: [

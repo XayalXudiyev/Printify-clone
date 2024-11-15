@@ -30,6 +30,7 @@ enum CaseColor {
   black 
   blue
   rose
+  yellow
 }
 
 enum TshirtSize {
