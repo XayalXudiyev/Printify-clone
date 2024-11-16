@@ -16,10 +16,14 @@ export type SaveConfigArgs = {
   caseMaterial: CaseMaterial
   caseFinish: CaseFinish
   configId: string
+  basePrice: number
+  totalPrice: number
 }
 
 export const saveConfig = async ({
   type,
+  basePrice,
+  totalPrice,
   caseColor,
   caseModel,
   caseMaterial,
@@ -27,15 +31,7 @@ export const saveConfig = async ({
   configId,
 }: SaveConfigArgs) => {
   await prismadb.configuration.update({
-    where: {
-      id: configId,
-    },
-    data: {
-      caseColor,
-      caseModel,
-      caseMaterial,
-      caseFinish,
-      type,
-    },
+    where: { id: configId },
+    data: { caseColor, caseModel, caseMaterial, caseFinish, type, basePrice, totalPrice },
   })
 }

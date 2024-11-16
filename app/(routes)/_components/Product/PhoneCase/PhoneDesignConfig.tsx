@@ -13,7 +13,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { useToast } from "@/hooks/use-toast"
 import { useUploadThing } from "@/lib/uploadthing"
 import { cn, formatPrice } from "@/lib/utils"
-import { Radio, RadioGroup } from "@headlessui/react"
+import {  RadioGroup } from "@headlessui/react"
 import { ArrowRightIcon, CaretDownIcon } from "@radix-ui/react-icons"
 import { useMutation } from "@tanstack/react-query"
 import Image from "next/image"
@@ -146,7 +146,7 @@ const PhoneDesignConfig = ({
       toast({
         title: "Configuration saved",
       })
-      router.push("/")
+      router.push(`/catalog/${configId}/phone/preview`)
     },
     onError: () => {
       toast({
@@ -307,7 +307,7 @@ const PhoneDesignConfig = ({
                                 cn(
                                   "relative block cursor-pointer rounded-lg bg-white px-6 py-2 shadow-sm border-2 border-zinc-200 focus:outline-none ring-0 focus:ring-0 outline-none sm:flex sm:justify-between",
                                   {
-                                    "border-myColor-100": focus || checked,
+                                    "border-myColor-100": focus || checked, 
                                   },
                                 )
                               }
@@ -363,7 +363,8 @@ const PhoneDesignConfig = ({
                   {formatPrice(
                     (PHONE_BASE_PRICE +
                       options.material.price +
-                      options.finish.price) 
+                      options.finish.price) /
+                      100,
                   )}
                 </p>
                 <Button
@@ -377,6 +378,8 @@ const PhoneDesignConfig = ({
                       caseModel: options.model.value,
                       caseMaterial: options.material.value,
                       caseFinish: options.finish.value,
+                      basePrice: PHONE_BASE_PRICE,
+                      totalPrice: PHONE_BASE_PRICE + options.material.price + options.finish.price,
                       configId,
                     })
                   }

@@ -28,9 +28,6 @@ const ProductPage = async ({ params: unresolvedParams }: ProductPageProps) => {
     return notFound()
   }
   const { imageUrl, width, height } = configuration
-
-  console.log("params", params.product)
-  
   switch (params.product) {
     case "phone":
       return (

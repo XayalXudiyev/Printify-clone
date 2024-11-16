@@ -78,6 +78,9 @@ model Configuration {
   mugColor        MugColor?
   croppedImageUrl String?
 
+  basePrice       Float?
+  totalPrice      Float?
+
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt
 }
