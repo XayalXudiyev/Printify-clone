@@ -28,14 +28,26 @@ const ProductPage = async ({ params: unresolvedParams }: ProductPageProps) => {
     return notFound()
   }
   const { imageUrl, width, height } = configuration
-  console.log(width)
-  return (
-    <PhoneDesignConfig
-      configId={configuration.id}
-      imageUrl={imageUrl}
-      imageDimensions={{ width, height }}
-    />
-  )
+
+  console.log("params", params.product)
+  
+  switch (params.product) {
+    case "phone":
+      return (
+        <PhoneDesignConfig
+          productType={params.product}
+          configId={configuration.id}
+          imageUrl={imageUrl}
+          imageDimensions={{ width, height }}
+        />
+      )
+    case "mug":
+      return <div>Mug</div>
+    case "t-shirt":
+      return <div>T-shirt</div>
+    default:
+      return notFound()
+  }
 }
 
 export default ProductPage

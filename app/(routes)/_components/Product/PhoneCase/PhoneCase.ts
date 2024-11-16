@@ -1,15 +1,15 @@
 export const PHONE_PRICES = {
   material: {
     silicone: 0,
-    polycarbonate: 7_00,
+    polycarbonate: 7.00,
   },
   finish: {
     smooth: 0,
-    textured: 4_00,
+    textured: 4.00,
   },
 } as const
 
-export const PHONE_BASE_PRICE = 12_00
+export const PHONE_BASE_PRICE = 12.00
 
 type Color = { label: string; value: string; tw: string; twBorder: string }
 

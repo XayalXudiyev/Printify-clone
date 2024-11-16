@@ -11,14 +11,17 @@ import {
 import { Label } from "@/components/ui/label"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useToast } from "@/hooks/use-toast"
+import { useUploadThing } from "@/lib/uploadthing"
 import { cn, formatPrice } from "@/lib/utils"
 import { Radio, RadioGroup } from "@headlessui/react"
 import { ArrowRightIcon, CaretDownIcon } from "@radix-ui/react-icons"
+import { useMutation } from "@tanstack/react-query"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import React, { useRef, useState } from "react"
 import { Rnd } from "react-rnd"
 import HandleComponent from "../HandleComponent"
+import { type SaveConfigArgs, saveConfig as _saveConfig } from "./PhoneAction"
 import {
   PHONE_BASE_PRICE,
   PHONE_COLORS,
@@ -34,6 +37,7 @@ interface PhoneDesignConfigProps {
     width: number
     height: number
   }
+  productType: string
 }
 
 const PhoneDesignConfig = ({
@@ -67,6 +71,89 @@ const PhoneDesignConfig = ({
     model: PHONE_MODELS[0],
     material: PHONE_MATERIALS[0].options[0],
     finish: PHONE_FINISHES[0].options[0],
+  })
+
+  const { startUpload } = useUploadThing("imageUploader")
+
+  // save image to db
+  const saveConfiguration = async () => {
+    const {
+      left: caseLeft,
+      top: caseTop,
+      width,
+      height,
+    } = phoneCaseRef.current!.getBoundingClientRect()
+    const { left: containerLeft, top: containerTop } =
+      containerRef.current!.getBoundingClientRect()
+
+    const leftOffset = caseLeft - containerLeft
+    const topOffset = caseTop - containerTop
+
+    const actualX = renderPosition.x - leftOffset
+    const actualY = renderPosition.y - topOffset
+
+    const canvas = document.createElement("canvas")
+    canvas.width = width
+    canvas.height = height
+
+    const ctx = canvas.getContext("2d")
+
+    const userImage = new window.Image()
+    userImage.crossOrigin = "anonymous"
+    userImage.src = imageUrl
+
+    await new Promise((resolve) => {
+      userImage.onload = resolve
+    })
+
+    ctx?.drawImage(
+      userImage,
+      actualX,
+      actualY,
+      renderDimensions.width,
+      renderDimensions.height,
+    )
+
+    const base64Image = canvas.toDataURL()
+    const base64Data = base64Image.split(",")[1]
+
+    const blob = base64ToBlob(base64Data, "image/png")
+    const file = new File([blob], "filename.png", { type: "image/png" })
+
+    await startUpload([file], { configId })
+  }
+  const base64ToBlob = (base64: string, mimeType: string) => {
+    const byteCharacters = atob(base64)
+    const byteNumbers = new Array(byteCharacters.length)
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i)
+    }
+    const byteArray = new Uint8Array(byteNumbers)
+    return new Blob([byteArray], { type: mimeType })
+  }
+
+  const { mutate: saveConfig, isPending } = useMutation({
+    mutationKey: ["save-config"],
+    mutationFn: async (args: SaveConfigArgs) => {
+      try {
+        await Promise.all([_saveConfig(args), saveConfiguration()])
+      } catch (error) {
+        console.error(error)
+        throw error
+      }
+    },
+    onSuccess: () => {
+      toast({
+        title: "Configuration saved",
+      })
+      router.push("/")
+    },
+    onError: () => {
+      toast({
+        title: "Error saving configuration",
+        variant: "destructive",
+      })
+    },
   })
 
   return (
@@ -220,7 +307,7 @@ const PhoneDesignConfig = ({
                                 cn(
                                   "relative block cursor-pointer rounded-lg bg-white px-6 py-2 shadow-sm border-2 border-zinc-200 focus:outline-none ring-0 focus:ring-0 outline-none sm:flex sm:justify-between",
                                   {
-                                    "border-myColor-100": focus || checked, // Burada sınıf kontrolü yapılacak
+                                    "border-myColor-100": focus || checked,
                                   },
                                 )
                               }
@@ -276,11 +363,24 @@ const PhoneDesignConfig = ({
                   {formatPrice(
                     (PHONE_BASE_PRICE +
                       options.material.price +
-                      options.finish.price) /
-                      100,
+                      options.finish.price) 
                   )}
                 </p>
-                <Button size="sm" className="w-fit">
+                <Button
+                  size="sm"
+                  className="w-fit"
+                  disabled={isPending}
+                  onClick={() =>
+                    saveConfig({
+                      type: "phone",
+                      caseColor: options.color.value,
+                      caseModel: options.model.value,
+                      caseMaterial: options.material.value,
+                      caseFinish: options.finish.value,
+                      configId,
+                    })
+                  }
+                >
                   Continue... <ArrowRightIcon />
                 </Button>
               </div>

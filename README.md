@@ -47,7 +47,7 @@ Prisma -> prisma [schema.prisma] lib/prismadb.ts
 
 Mongo Db 
 
-UploadThing => app/api lib/uploadthings
+UploadThing => app/api/uploadthing/core   lib/uploadthings
 
 Sharp => api/uploadthing/core
 
