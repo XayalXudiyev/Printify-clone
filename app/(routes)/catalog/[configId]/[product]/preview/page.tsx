@@ -10,8 +10,9 @@ interface PreviewPageProps {
   }
 }
 
-const PreviewPage = async ({ params }: PreviewPageProps) => {
-  const configId = params.configId
+const PreviewPage = async ({ params: unresolvedParams}: PreviewPageProps) => {
+  const params = await unresolvedParams
+  const { configId } = params
 
   if (!isValidObjectId(configId)) {
     return notFound()   
