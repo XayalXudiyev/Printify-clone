@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "biome check --apply-unsafe --no-errors-on-unmatched --files-ignore-unknown=true ./"
   },
