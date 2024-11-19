@@ -39,9 +39,17 @@ const ProductPage = async ({ params: unresolvedParams }: ProductPageProps) => {
         />
       )
     case "mug":
-      return <div>Mug</div>
+      return (
+        <div className="w-full h-44 flex items-center justify-center text-2xl">
+          Click Phone
+        </div>
+      )
     case "t-shirt":
-      return <div>T-shirt</div>
+      return (
+        <div className="w-full h-44 flex items-center justify-center text-2xl">
+          Click Phone
+        </div>
+      )
     default:
       return notFound()
   }

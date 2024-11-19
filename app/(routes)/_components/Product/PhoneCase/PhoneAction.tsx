@@ -32,6 +32,14 @@ export const saveConfig = async ({
 }: SaveConfigArgs) => {
   await prismadb.configuration.update({
     where: { id: configId },
-    data: { caseColor, caseModel, caseMaterial, caseFinish, type, basePrice, totalPrice },
+    data: {
+      caseColor,
+      caseModel,
+      caseMaterial,
+      caseFinish,
+      type,
+      basePrice,
+      totalPrice,
+    },
   })
 }

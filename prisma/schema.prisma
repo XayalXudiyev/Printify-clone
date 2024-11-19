@@ -63,27 +63,80 @@ enum ProductType {
 }
 
 model Configuration {
-  id              String       @id @default(auto()) @map("_id") @db.ObjectId
-  type            ProductType?
+  id                  String                  @id @default(auto()) @map("_id") @db.ObjectId
+  type                ProductType?
 
-  width           Int
-  height          Int
-  imageUrl        String
-  caseColor       CaseColor?
-  caseModel       PhoneModel?
-  caseMaterial    CaseMaterial?
-  caseFinish      CaseFinish?
-  tshirtSize      TshirtSize?
-  tshirtColor     TshirtColor? 
-  mugColor        MugColor?
-  croppedImageUrl String?
-
-  basePrice       Float?
-  totalPrice      Float?
-
-  createdAt       DateTime     @default(now())
-  updatedAt       DateTime     @updatedAt
+  width               Int
+  height              Int
+  imageUrl            String
+  caseColor           CaseColor?
+  caseModel           PhoneModel?
+  caseMaterial        CaseMaterial?
+  caseFinish          CaseFinish?
+  tshirtSize          TshirtSize?
+  tshirtColor         TshirtColor? 
+  mugColor            MugColor?
+  croppedImageUrl     String?
+  basePrice           Float?
+  totalPrice          Float?
+  order               Order[]
+  createdAt           DateTime                @default(now())
+  updatedAt           DateTime                @updatedAt
 }
+
+enum OrderStatus{
+  waiting  
+  in_cargo
+  delivered
+}
+
+model Order {
+  id                  String                  @id @default(auto()) @map("_id") @db.ObjectId
+  configurationId     String                  @db.ObjectId
+  configuration       Configuration           @relation(fields: [configurationId], references: [id], onDelete: Cascade)
+  userId              String                  @db.ObjectId 
+  amount              Float
+  isPaid              Boolean                 @default(false)
+  paidType            String
+  status              OrderStatus             @default(waiting)
+  address             Address                 @relation(fields: [addressId], references:[id])
+  addressId           String                  @db.ObjectId
+  createdAt           DateTime                @default(now())
+  updatedAt           DateTime                @updatedAt
+
+  @@index([configurationId])
+  @@index([addressId])
+
+}
+
+
+model Address {
+  id                  String                  @id @default(auto()) @map("_id") @db.ObjectId
+  name                String
+  street              String
+  city                String
+  postalCode          String
+  country             String
+  state               String
+  phoneNumber         String
+  orders              Order[]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // pnpm install prisma

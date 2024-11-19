@@ -54,3 +54,5 @@ Sharp => api/uploadthing/core
 Dropzone => catalog/page.tsx
 
 RDN => _components/Product/PhoneDesignConfig
+
+Confettie

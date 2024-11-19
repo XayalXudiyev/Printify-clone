@@ -11,8 +11,15 @@ const UserMenu = async () => {
     <div>
       {user ? (
         <div className="flex items-center justify-center gap-3">
+          {/* order page   */}
+          <Link href="/order">
+            <Button variant="outline" className="bg-myColor-100 text-white">
+              Order
+            </Button>
+          </Link>
+          {/* dashboard page */}
           <Link href="/dashboard">
-            <Button variant="outline">Dashboard</Button>
+            <Button variant="destructive">Dashboard</Button>
           </Link>
           <UserButton />
         </div>
@@ -21,7 +28,7 @@ const UserMenu = async () => {
           <Button variant="outline">
             <Link href="sign-in">Login</Link>
           </Button>
-          <Button variant="myButton">
+          <Button variant="default">
             <Link href="sign-up">Sign Up</Link>
           </Button>
         </div>

@@ -1,4 +1,4 @@
-import CatalogSiteMap from '../_components/CatalogSiteMap'
+import CatalogSiteMap from "../_components/CatalogSiteMap"
 
 interface CatalogLayoutProps {
   children: React.ReactNode

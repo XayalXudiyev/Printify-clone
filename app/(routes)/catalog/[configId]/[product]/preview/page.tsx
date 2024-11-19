@@ -10,26 +10,26 @@ interface PreviewPageProps {
   }
 }
 
-const PreviewPage = async ({ params: unresolvedParams}: PreviewPageProps) => {
+const PreviewPage = async ({ params: unresolvedParams }: PreviewPageProps) => {
   const params = await unresolvedParams
   const { configId } = params
 
   if (!isValidObjectId(configId)) {
-    return notFound()   
+    return notFound()
   }
 
   const configuration = await prismadb.configuration.findUnique({
-    where: {    
+    where: {
       id: configId,
-    },  
+    },
   })
 
-  if (!configuration) { 
+  if (!configuration) {
     return notFound()
   }
   switch (params.product) {
     case "phone":
-      return  <PhonePreview configuration={configuration} />
+      return <PhonePreview configuration={configuration} />
     case "mug":
       return <div>Mug</div>
     case "t-shirt":
@@ -37,7 +37,6 @@ const PreviewPage = async ({ params: unresolvedParams}: PreviewPageProps) => {
     default:
       return notFound()
   }
-
 }
 
 export default PreviewPage
