@@ -72,9 +72,9 @@ const CatalogSiteMap = () => {
     <header className="mt-5">
       <ProgressBar currentStep={currentStep} />
       <nav className="flex justify-center items-center space-x-14">
-        {steps?.map((step) => (
+        {steps?.map((step,key) => (
           <StepItem
-            key={step.key}
+            key={key}
             number={step.key}
             label={step.label}
             href={step.href}
@@ -104,14 +104,12 @@ const StepItem = ({
   isActive,
   isClickable,
   onClick,
-  key,
 }: {
   label: string
   number: number
   href: string
   isActive: boolean
   isClickable: boolean
-  key: number
   onClick: () => void
 }) => {
   return (

@@ -83,12 +83,12 @@ const CatalogPage = () => {
                   {isUploading ? (
                     <div className=" flex flex-col items-center ">
                       <p>Uploading...</p>
-                      <p>
+                      <div>
                         <Progress
                           value={uploadProgress}
                           className="mt-4 w-44 h-1 bg-gray-400"
                         />
-                      </p>
+                      </div>
                     </div>
                   ) : isPending ? (
                     <div className="flex flex-col items-center ">

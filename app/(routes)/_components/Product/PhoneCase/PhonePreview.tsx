@@ -19,8 +19,6 @@ interface PhonePreviewProps {
 const PhonePreview = ({ configuration }: PhonePreviewProps) => {
   const router = useRouter()
 
-  console.log("configurations", configuration)
-
   const {
     caseColor,
     caseModel,

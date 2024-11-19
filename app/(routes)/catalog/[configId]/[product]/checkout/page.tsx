@@ -10,7 +10,8 @@ interface CheckoutProps {
   }
 }
 
-const Checkout = async ({ params }: CheckoutProps) => {
+const Checkout = async ({ params: unresolvedParams }: CheckoutProps) => {
+  const params =  unresolvedParams
   const { configId, product } = params
 
   if (!isValidObjectId(configId)) {
