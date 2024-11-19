@@ -20,7 +20,7 @@ const Footer = () => {
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet,
             saepe.
           </p>
-          <Button variant="myButton">Help Center</Button>
+          <Button variant="destructive">Help Center</Button>
         </div>
       </div>
 
@@ -36,22 +36,22 @@ const Footer = () => {
             />
           </Link>
           <div className="flex flex-row gap-4 ml-auto">
-            <Button size="icon" variant="myButton">
+            <Button size="icon" variant="destructive">
               <Link href={""}>
                 <FaFacebook />
               </Link>
             </Button>
-            <Button size="icon" variant="myButton">
+            <Button size="icon" variant="destructive">
               <Link href={""}>
                 <FaInstagram />
               </Link>
             </Button>
-            <Button size="icon" variant="myButton">
+            <Button size="icon" variant="destructive">
               <Link href={""}>
                 <FaTwitter />
               </Link>
             </Button>
-            <Button size="icon" variant="myButton">
+            <Button size="icon" variant="destructive">
               <Link href={""}>
                 <FaLinkedin />
               </Link>

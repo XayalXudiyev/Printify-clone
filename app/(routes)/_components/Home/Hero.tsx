@@ -27,7 +27,7 @@ const Hero = () => {
             </p>
           </div>
           <div className="mt-8 flex flex-col lg:flex-row lg:gap-6">
-            <Button variant="myButton" size="lg">
+            <Button size="lg">
               Get Started
             </Button>
             <Button variant="outline" size="lg">
