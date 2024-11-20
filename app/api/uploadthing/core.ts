@@ -3,9 +3,14 @@ import sharp from "sharp";
 import { type FileRouter, createUploadthing } from "uploadthing/next";
 import { z } from "zod";
 
+const token = process.env.UPLOADTHING_TOKEN;
+
 const f = createUploadthing({
-  token: process.env.UPLOADTHING_TOKEN
-}); 
+  token: token,
+});
+
+const auth = (req: Request) => ({ id: "fakeId" }); 
+
 
 export const ourFileRouter = {
   imageUploader: f({ image: { maxFileSize: "4MB" } })
